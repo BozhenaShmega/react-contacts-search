@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id='content'></div>
+
+    <script type="text/babel">
+        const CONTACTS =  [
+        {
+            id: 1,
+            name: 'Darth Vader',
+            phoneNumber: '+25095555555',
+            image: 'https://c1-ebgames.eb-cdn.com.au/merchandising/images/packshots/e352411d576e40e5aa20c2fa1510bb58_Large.png',
+
+        }, {
+            id: 2,
+            name: 'Luke Skywalker',
+            phoneNumber: '+25095585711',
+            image: 'http://i.imgur.com/YNURL0V.jpg',
+        }, {
+            id: 3,
+            name: 'Princess Leia',
+            phoneNumber: '+25095526558',
+            image: 'https://cdn.shopify.com/s/files/1/1089/5480/products/75c162e26163186651ed4ff2adc10e23.jpg?v=1504879779',
+        }, {
+            id: 4,
+            name: 'Chewbacca',
+            phoneNumber: '+25095523568',
+            image: 'https://www.sideshowtoy.com/wp-content/uploads/2016/06/star-wars-the-force-awakens-chewbacca-sixth-scale-hot-toys-thumb-902759.jpg',
+        }, {
+            id: 5,
+            name: 'Darth Maul',
+            phoneNumber: '+25095559999',
+            image: 'https://www.sideshowtoy.com/wp-content/uploads/2015/10/star-wars-darth-maul-sixth-scale-thumb-1001561.jpg',
+
+        }, {
+            id: 6,
+            name: 'Magistr Yoda',
+            phoneNumber: '+25095537522',
+            image: 'https://images.ua.prom.st/334931409_w640_h640_sw_mini01_5.jpg',
+        }, {
+            id: 7,
+            name: 'Meys Vindoo',
+            phoneNumber: '+25095527812',
+            image: 'data:image/jpeg;base64,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',
+        }
+        ];
+
+        var Contact = React.createClass({
+            render: function() {
+                return <li className="contact">
+                            <img className="contact-image" src={this.props.image} width="60px" height="60px" />
+                            <div className="contact-info">
+                                <div className="contact-name">{this.props.name}</div>
+                                <div className="contact-number">{this.props.phoneNumber}</div>
+                            </div>
+                        </li>;
+            }
+        });
+
+        var ContactsList = React.createClass({
+
+            getInitialState: function() {
+                return {
+                    displayedContacts: CONTACTS
+                };
+            },
+
+            handleSearch: function(event) {
+                var searchQuery = event.target.value.toLowerCase();
+                var displayedContacts = CONTACTS.filter(function(el) {
+                    var searchValue = el.name.toLowerCase();
+                    return searchValue.indexOf(searchQuery) !== -1;
+                });
+                this.setState({
+                    displayedContacts: displayedContacts
+                });
+            },
+            render: function() {
+                return (
+                    <div className="contacts">
+                        <input type="text" className="search-field" placeholder="search contact..." onChange={this.handleSearch} />
+                        <ul className="contacts-list">
+                            {
+                                this.state.displayedContacts.map((el) => {
+                                     return <Contact 
+                                        key={el.id} 
+                                        name={el.name} 
+                                        phoneNumber={el.phoneNumber}
+                                        image={el.image}
+                                     />;
+                                })
+                            }
+                        </ul>
+                    </div>
+                );
+            }
+        });
+
+        ReactDOM.render(<ContactsList />, document.getElementById('content'));
+    </script>
+</body>
+</html>
